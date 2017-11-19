@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Airbus Bot Chat</title>
+
+    <link href="https://rawgit.com/hieumoscow/BotFramework-WebChat/master/botchat.css" rel="stylesheet" />
+
+    <style>
+        html, body {
+          height: 100%;
+          margin: 0;
+          overflow: hidden;
+          padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="bot"></div>
+    <script src="https://rawgit.com/hieumoscow/BotFramework-WebChat/master/botchat.js"></script>
+    <script src="https://cdn.botframework.com/botframework-webchat/latest/CognitiveServices.js"></script>
+
+    <script>
+      const params = BotChat.queryParams(location.search);
+             var speechOptions = {
+                   speechRecognizer: new CognitiveServices.SpeechRecognizer( { subscriptionKey: '61e0e043d9694cad8dd312ebad3b9568' } ),
+                   speechSynthesizer: new CognitiveServices.SpeechSynthesizer(
+                       {
+                           subscriptionKey: '61e0e043d9694cad8dd312ebad3b9568',
+                           gender: CognitiveServices.SynthesisGender.Female,
+                           voiceName: 'Microsoft Server Speech Text to Speech Voice (en-US, JessaRUS)'
+                       })
+                   }
+             BotChat.App({
+               //directLine: { secret: 'DftF_MpZxoY.cwA.RLc.LzC-Bh5ZLf2jtM0LG_Xn3nK_4p5PpWecZ8RCn6IoWN8' },
+               directLine: { secret: '53oQOJqdxFg.cwA.BkY.h1TdMhlTHcU7o2Gqgz5fXeqRPk_p0AoHQ2aVWd3SrB4' },
+               user: { id: '' },
+               bot: { id: 'botid' },
+               speechOptions: speechOptions
+             }, document.getElementById('bot'));
+    </script>
+</body>
+</html>
