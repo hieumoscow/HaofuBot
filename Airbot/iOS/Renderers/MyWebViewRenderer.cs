@@ -8,7 +8,7 @@ using Xamarin.Forms.Platform.iOS;
 [assembly: ExportRenderer(typeof(MyWebView), typeof(MyWebViewRenderer))]
 namespace Airbot.iOS.Renderers
 {
-    public class MyWebViewRenderer : WebViewRenderer
+    public class MyWebViewRenderer : WebViewRenderer, IUIScrollViewDelegate
     {
         protected override void OnElementChanged(VisualElementChangedEventArgs e)
         {
@@ -17,7 +17,7 @@ namespace Airbot.iOS.Renderers
             {
                 // Unsubscribe from event handlers and cleanup any resources
 
-                var control = (NativeView as UIWebView);
+                //var control = (NativeView as UIWebView);
                 //if (control != null)
                     //control.ScrollView.Scrolled -= HandleEventHandler;
             }
@@ -28,20 +28,18 @@ namespace Airbot.iOS.Renderers
                 // Configure the control and subscribe to event handlers
                 if (control != null)
                 {
-                    //control.ScrollView.ShowsHorizontalScrollIndicator = false;
-                    //control.ScrollView.Scrolled += HandleEventHandler;
-                    //control.ScrollView.ContentSize = new CoreGraphics.CGSize(control.Frame.Size.Width, control.Frame.Size.Height);
-                    //control.ScrollView.ContentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentBehavior.Never;
+                    control.ScrollView.ShowsHorizontalScrollIndicator = false;
+                    control.ScrollView.Delegate = this;
 
                 }
             }
         }
 
-        void HandleEventHandler(object sender, EventArgs e)
+        public override void Scrolled(UIScrollView scrollView)
         {
-            var scrollView = sender as UIScrollView;
+            base.Scrolled(scrollView);
             if (scrollView != null && scrollView.ContentOffset.X > 0)
-                scrollView.ContentOffset = new CoreGraphics.CGPoint(0, scrollView.ContentOffset.Y);
+            scrollView.ContentOffset = new CoreGraphics.CGPoint(0, scrollView.ContentOffset.Y);
         }
     }
 }
