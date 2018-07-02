@@ -21,37 +21,35 @@
     <script src="https://rawgit.com/hieumoscow/BotFramework-WebChat/master/botchat.js"></script>
     <script src="https://rawgit.com/hieumoscow/BotFramework-WebChat/master/CognitiveServices.js"></script>
 
-    <script>
-      const params = BotChat.queryParams(location.search);
+    <script>const params = BotChat.queryParams(location.search);
 
-      const user = {
-        id: params['userid'] || 'userid',
-        name: params['username'] || 'username'
-      };
+const user = {
+            id: params['userid'] || 'userid',
+            name: params['username'] || 'username'
+};
 
-      const bot = {
-        id: params['botid'] || 'botid',
-        name: params['botname'] || 'botname'
-      };
+const bot = {
+            id: params['botid'] || 'botid',
+            name: params['botname'] || 'botname'
+};
 
-      window['botchatDebug'] = params['debug'] && params['debug'] === 'true';
+window['botchatDebug'] = params['debug'] && params['debug'] === 'true';
 
-      var speechOptions = {
-            speechRecognizer: new CognitiveServices.SpeechRecognizer( { subscriptionKey: '61e0e043d9694cad8dd312ebad3b9568' } ),
+var speechOptions = {
+            speechRecognizer: new CognitiveServices.SpeechRecognizer({ subscriptionKey: '61e0e043d9694cad8dd312ebad3b9568' }),
             speechSynthesizer: new CognitiveServices.SpeechSynthesizer(
                 {
                     subscriptionKey: '61e0e043d9694cad8dd312ebad3b9568',
                     gender: CognitiveServices.SynthesisGender.Female,
                     voiceName: 'Microsoft Server Speech Text to Speech Voice (en-US, JessaRUS)'
                 })
-            }
-      BotChat.App({
-        //directLine: { secret: 'DftF_MpZxoY.cwA.RLc.LzC-Bh5ZLf2jtM0LG_Xn3nK_4p5PpWecZ8RCn6IoWN8' },
-        directLine: { secret: '53oQOJqdxFg.cwA.BkY.h1TdMhlTHcU7o2Gqgz5fXeqRPk_p0AoHQ2aVWd3SrB4' },
-        user: { id: 'me' },
-        bot: { id: 'botid' },
-        speechOptions: speechOptions
-      }, document.getElementById('BotChatGoesHere'));
-    </script>
+}
+BotChat.App({
+            //directLine: { secret: 'DftF_MpZxoY.cwA.RLc.LzC-Bh5ZLf2jtM0LG_Xn3nK_4p5PpWecZ8RCn6IoWN8' },
+            directLine: { secret: 'RFX4hU5snDE.cwA.G68.W6GsvLx1fbumUed2S6GJYzSn7uHvujLwR30o-2aKlu8' },
+            user: { id: 'me' },
+            bot: { id: 'botid' },
+            speechOptions: speechOptions
+}, document.getElementById('BotChatGoesHere'));</script>
 </body>
 </html>

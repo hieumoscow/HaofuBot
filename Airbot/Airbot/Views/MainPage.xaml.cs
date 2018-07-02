@@ -14,9 +14,15 @@ namespace Airbot.Views
         public MainPage()
         {
             InitializeComponent();
-            //var htmlSource = new HtmlWebViewSource();
-            //htmlSource.Html = LoadAsset("Airbot.Assets.haofu.html");
-            //webview.Source = htmlSource;
+            var htmlSource = new HtmlWebViewSource();
+            htmlSource.Html = LoadAsset("Airbot.Assets.haofu.html");
+            webview.Source = htmlSource;
+            webview.Navigating += Webview_Navigating;
+        }
+
+        void Webview_Navigating(object sender, WebNavigatingEventArgs e)
+        {
+            Debug.WriteLine(e.Url);
         }
 
         public static string LoadAsset(string resId)

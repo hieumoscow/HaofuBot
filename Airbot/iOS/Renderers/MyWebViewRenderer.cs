@@ -30,9 +30,16 @@ namespace Airbot.iOS.Renderers
                 {
                     control.ScrollView.ShowsHorizontalScrollIndicator = false;
                     control.ScrollView.Delegate = this;
+                    //control.ShouldStartLoad += Control_ShouldStartLoad;
 
                 }
             }
+        }
+
+        public bool Control_ShouldStartLoad(UIWebView webView, Foundation.NSUrlRequest request, UIWebViewNavigationType navigationType)
+        {
+            
+            return true;
         }
 
         public override void Scrolled(UIScrollView scrollView)
